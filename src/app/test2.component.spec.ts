@@ -1,12 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActionReducerMap, StoreModule } from '@ngrx/store';
 
-import { deepFreeze } from './deep-freeze';
 import { MyState } from './myState';
 import { Test2Component } from './test2.component';
 
 const date = new Date();
-deepFreeze(date);
+Object.freeze(date);
 
 describe('Test2Component', () => {
   let fixture: ComponentFixture<Test2Component>;

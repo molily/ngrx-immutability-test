@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 
-import { deepFreeze } from './deep-freeze';
 import { MyState } from './myState';
 import { Test1Component } from './test1.component';
 
@@ -10,7 +9,7 @@ const date = new Date();
 const state: MyState = {
   someDate: date
 };
-deepFreeze(state);
+Object.freeze(state.someDate);
 
 describe('Test1Component', () => {
   let fixture: ComponentFixture<Test1Component>;
