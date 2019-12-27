@@ -1,0 +1,34 @@
+label {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.label-text {
+    width: 25%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+}
+.input-text {
+    width: 65%;
+}
+
+button[type="submit"],
+input[type="text"],
+input[type="email"] {
+    border: 1px solid #aaa;
+    padding: 10px;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+input[type="text"].ng-touched.ng-invalid,
+input[type="email"].ng-touched.ng-invalid {
+    border: 1px solid darkred;
+    box-shadow: inset 0px 0px 2px #daa;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #eee;
+}

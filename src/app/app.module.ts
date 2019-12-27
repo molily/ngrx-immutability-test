@@ -14,6 +14,8 @@ import { metaReducers, reducers } from "./reducers";
         StoreModule.forRoot(reducers, {
             metaReducers,
             runtimeChecks: {
+                strictStateSerializability: true,
+                strictActionSerializability: true,
                 strictStateImmutability: true,
                 strictActionImmutability: true,
             },
