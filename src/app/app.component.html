@@ -4,34 +4,91 @@
 
 <pre>{{ user$ | async | json }}</pre>
 
-<form [formGroup]="userForm" (submit)="setUser()">
-    <h2>Edit User</h2>
+<form [formGroup]="userForm" (submit)="setUserFromFormGroup()">
+    <h2>Edit User (Reactive form)</h2>
     <p>
         <label>
-            <span class="label-text">User name:</span>
+            <span class="label-text">User name (required):</span>
             <input type="text" formControlName="name" class="input-text" />
         </label>
     </p>
     <p>
         <label>
-            <span class="label-text">First name:</span>
+            <span class="label-text">First name (required):</span>
             <input type="text" formControlName="firstName" class="input-text" />
         </label>
     </p>
     <p>
         <label>
-            <span class="label-text">Last name:</span>
+            <span class="label-text">Last name (required):</span>
             <input type="text" formControlName="lastName" class="input-text" />
         </label>
     </p>
     <p>
         <label>
-            <span class="label-text">Email:</span>
+            <span class="label-text">Email (required):</span>
             <input type="email" formControlName="email" class="input-text" />
         </label>
     </p>
 
     <p>
         <button type="submit" [disabled]="!userForm.valid">Save user</button>
+    </p>
+</form>
+
+<form *ngIf="user as someUser" #userFormNgModel="ngForm" (submit)="setUserFromNgModel()">
+    <h2>Edit User (ngModel)</h2>
+    <p>
+        <label>
+            <span class="label-text">User name (required):</span>
+            <input
+                type="text"
+                name="userName"
+                class="input-text"
+                required
+                [(ngModel)]="someUser.name"
+            />
+        </label>
+    </p>
+    <p>
+        <label>
+            <span class="label-text">First name (required):</span>
+            <input
+                type="text"
+                name="userFirstName"
+                class="input-text"
+                required
+                [(ngModel)]="someUser.firstName"
+            />
+        </label>
+    </p>
+    <p>
+        <label>
+            <span class="label-text">Last name (required):</span>
+            <input
+                type="text"
+                name="userLastName"
+                class="input-text"
+                required
+                [(ngModel)]="someUser.lastName"
+            />
+        </label>
+    </p>
+    <p>
+        <label>
+            <span class="label-text">Email (required):</span>
+            <input
+                type="email"
+                name="userEmail"
+                class="input-text"
+                required
+                email
+                [(ngModel)]="someUser.email"
+            />
+        </label>
+    </p>
+
+    <p>
+        <button type="submit" [disabled]="!userFormNgModel.valid">Save user</button>
     </p>
 </form>

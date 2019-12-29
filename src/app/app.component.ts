@@ -15,6 +15,7 @@ import { selectUser } from "./selectors/user.selectors";
 })
 export class AppComponent implements OnInit, OnDestroy {
     public user$: Observable<User | null>;
+    public user?: User;
     public userForm: FormGroup;
     private userSubscription: Subscription;
 
@@ -28,31 +29,43 @@ export class AppComponent implements OnInit, OnDestroy {
         this.user$ = store$.pipe(select(selectUser));
         this.userSubscription = this.user$.subscribe((user) => {
             if (user) {
+                // Reactive form: Patch value
                 this.userForm.patchValue(user, { emitEvent: false });
+                // Template-driven form: Two-way data binding to a copy
+                this.user = { ...user };
             }
         });
     }
 
     public ngOnInit() {
-        this.store$.dispatch(
-            setUser({
-                user: {
-                    name: "minnie",
-                    firstName: "Minnie",
-                    lastName: "Mouse",
-                    email: "minnie@disney.com",
-                },
-            }),
-        );
+        setTimeout(() => {
+            this.store$.dispatch(
+                setUser({
+                    user: {
+                        name: "minnie",
+                        firstName: "Minnie",
+                        lastName: "Mouse",
+                        email: "minnie@disney.com",
+                    },
+                }),
+            );
+        }, 1000);
     }
 
     public ngOnDestroy() {
         this.userSubscription.unsubscribe();
     }
 
-    public setUser() {
+    public setUserFromFormGroup() {
         if (this.userForm.valid) {
             this.store$.dispatch(setUser({ user: this.userForm.value }));
+        }
+    }
+
+    public setUserFromNgModel() {
+        const { user } = this;
+        if (user) {
+            this.store$.dispatch(setUser({ user }));
         }
     }
 }
