@@ -23,8 +23,10 @@ input[type="email"] {
 
 input[type="text"].ng-touched.ng-invalid,
 input[type="email"].ng-touched.ng-invalid {
-    border: 1px solid darkred;
-    box-shadow: inset 0px 0px 2px #daa;
+    border: 2px solid darkred;
+    padding: 9px;
+    border-left-width: 2px;
+    background-color: #fee;
 }
 
 button[type="submit"] {

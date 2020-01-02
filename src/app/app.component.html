@@ -4,49 +4,17 @@
 
 <pre>{{ user$ | async | json }}</pre>
 
+<!-- Reactive-driven form -->
 <form [formGroup]="userForm" (submit)="setUserFromFormGroup()">
-    <h2>Edit User (Reactive form)</h2>
-    <p>
-        <label>
-            <span class="label-text">User name (required):</span>
-            <input type="text" formControlName="name" class="input-text" />
-        </label>
-    </p>
-    <p>
-        <label>
-            <span class="label-text">First name (required):</span>
-            <input type="text" formControlName="firstName" class="input-text" />
-        </label>
-    </p>
-    <p>
-        <label>
-            <span class="label-text">Last name (required):</span>
-            <input type="text" formControlName="lastName" class="input-text" />
-        </label>
-    </p>
-    <p>
-        <label>
-            <span class="label-text">Email (required):</span>
-            <input type="email" formControlName="email" class="input-text" />
-        </label>
-    </p>
-
-    <p>
-        <button type="submit" [disabled]="!userForm.valid">Save user</button>
-    </p>
-</form>
-
-<form *ngIf="user as someUser" #userFormNgModel="ngForm" (submit)="setUserFromNgModel()">
-    <h2>Edit User (ngModel)</h2>
+    <h2>Edit User (reactive form with FormGroup)</h2>
     <p>
         <label>
             <span class="label-text">User name (required):</span>
             <input
                 type="text"
-                name="userName"
+                formControlName="name"
                 class="input-text"
-                required
-                [(ngModel)]="someUser.name"
+                data-testid="reactive-form-name"
             />
         </label>
     </p>
@@ -55,10 +23,9 @@
             <span class="label-text">First name (required):</span>
             <input
                 type="text"
-                name="userFirstName"
+                formControlName="firstName"
                 class="input-text"
-                required
-                [(ngModel)]="someUser.firstName"
+                data-testid="reactive-form-first-name"
             />
         </label>
     </p>
@@ -67,10 +34,9 @@
             <span class="label-text">Last name (required):</span>
             <input
                 type="text"
-                name="userLastName"
+                formControlName="lastName"
                 class="input-text"
-                required
-                [(ngModel)]="someUser.lastName"
+                data-testid="reactive-form-last-name"
             />
         </label>
     </p>
@@ -79,16 +45,84 @@
             <span class="label-text">Email (required):</span>
             <input
                 type="email"
-                name="userEmail"
+                formControlName="email"
                 class="input-text"
-                required
-                email
-                [(ngModel)]="someUser.email"
+                data-testid="reactive-form-email"
             />
         </label>
     </p>
 
     <p>
-        <button type="submit" [disabled]="!userFormNgModel.valid">Save user</button>
+        <button type="submit" [disabled]="!userForm.valid" data-testid="reactive-form-submit">
+            Save user
+        </button>
+    </p>
+</form>
+
+<!-- Template-driven form -->
+<form *ngIf="user as someUser" #userFormNgModel="ngForm" (submit)="setUserFromNgModel()">
+    <h2>Edit User (template-driven form with ngModel)</h2>
+    <p>
+        <label>
+            <span class="label-text">User name (required):</span>
+            <input
+                type="text"
+                name="name"
+                class="input-text"
+                required
+                [(ngModel)]="someUser.name"
+                data-testid="template-driven-form-name"
+            />
+        </label>
+    </p>
+    <p>
+        <label>
+            <span class="label-text">First name (required):</span>
+            <input
+                type="text"
+                name="firstName"
+                class="input-text"
+                required
+                [(ngModel)]="someUser.firstName"
+                data-testid="template-driven-form-first-name"
+            />
+        </label>
+    </p>
+    <p>
+        <label>
+            <span class="label-text">Last name (required):</span>
+            <input
+                type="text"
+                name="lastName"
+                class="input-text"
+                required
+                [(ngModel)]="someUser.lastName"
+                data-testid="template-driven-form-last-name"
+            />
+        </label>
+    </p>
+    <p>
+        <label>
+            <span class="label-text">Email (required):</span>
+            <input
+                type="email"
+                name="email"
+                class="input-text"
+                required
+                email
+                [(ngModel)]="someUser.email"
+                data-testid="template-driven-form-email"
+            />
+        </label>
+    </p>
+
+    <p>
+        <button
+            type="submit"
+            [disabled]="!userFormNgModel.valid"
+            data-testid="template-driven-form-submit"
+        >
+            Save user
+        </button>
     </p>
 </form>

@@ -42,10 +42,10 @@ export class AppComponent implements OnInit, OnDestroy {
             this.store$.dispatch(
                 setUser({
                     user: {
-                        name: "minnie",
+                        name: "minnie.mouse",
                         firstName: "Minnie",
                         lastName: "Mouse",
-                        email: "minnie@disney.com",
+                        email: "minnie.mouse@example.org",
                     },
                 }),
             );
